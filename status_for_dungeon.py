@@ -9,10 +9,10 @@ from status import Status
 from event  import Event
 import random
 
+
 START_STATUS_CODE = 'GameStartStatus'
 END_STATUS_CODE   = 'GameEndStatus'
 STATUS = dict()
-
 
 class GameStartStatus(Status):
     def __init__(self):

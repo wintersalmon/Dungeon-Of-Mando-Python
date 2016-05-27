@@ -3,8 +3,6 @@
 # 2016.05.19
 # player
 
-import monster
-import weapon
 
 class Player:
     def __init__(self,name):
@@ -36,6 +34,10 @@ class Player:
             self.__life_point = 0
         return self.__life_point
     
+    def reset(self):
+        self.__victory_point = 0
+        self.__life_point = 2
+'''
     def reset_round(self):
         self.__removed_weapons.clear()
         self.__removed_monsters.clear()
@@ -130,3 +132,13 @@ class Player:
     
     def show_current_draw_monster(self,monster):
         print(self.make_display_option_msg(monster.name(), 'No Options'))
+'''
+
+def test_player():
+    names = ['aaa', 'bbb', 'ccc', 'ddd']
+    players = list( map(lambda name: Player(name), names) )
+    for player in players:
+        print(type(player), player, player.life_point(), player.victory_point())
+
+if __name__ == "__main__":
+    test_player()
