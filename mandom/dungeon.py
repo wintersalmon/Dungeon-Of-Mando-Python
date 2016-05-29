@@ -5,11 +5,32 @@
 # dungeon
 #
 
-from monster  import GoblinMonster, SkeletonWarriorMonster, OrkMonster, VampireMonster, GolamMonster, ReaperMonster, SatanMonster, DragonMonster
-from weapon   import TorchWeapon, HolyGrailWeapon, SpearWeapon, ArmorWeapon, ShieldWeapon, HeroSwordWeapon
-from hero     import Hero
-from player   import Player
-from recorder import Recorder
+# from monster import GoblinMonster, SkeletonWarriorMonster, OrkMonster, VampireMonster, GolamMonster, ReaperMonster, SatanMonster, DragonMonster
+# from weapon  import TorchWeapon, HolyGrailWeapon, SpearWeapon, ArmorWeapon, ShieldWeapon, HeroSwordWeapon
+
+from mandom.monsters.monster_dragon  import MonsterDragon
+from mandom.monsters.monster_goblin  import MonsterGoblin
+from mandom.monsters.monster_golam   import MonsterGolam
+from mandom.monsters.monster_ork     import MonsterOrk
+from mandom.monsters.monster_reaper  import MonsterReaper
+from mandom.monsters.monster_satan   import MonsterSatan
+from mandom.monsters.monster_vampire import MonsterVampire
+from mandom.monsters.monster_skeleton_warrior import MonsterSkeletonWarrior
+
+from mandom.weapons.weapon_armor  import WeaponArmor
+from mandom.weapons.weapon_shield import WeaponShield
+from mandom.weapons.weapon_spear  import WeaponSpear
+from mandom.weapons.weapon_torch  import WeaponTorch
+from mandom.weapons.weapon_hero_sword import WeaponHeroSword
+from mandom.weapons.weapon_holy_grail import WeaponHolyGrail
+
+from mandom.events.event import Event
+
+from mandom.hero   import Hero
+from mandom.player import Player
+from mandom.status_manager import StatusManager
+
+from mandom.containers.recorder import Recorder
 
 
 class Dungeon():
@@ -19,7 +40,7 @@ class Dungeon():
         self.turn  = DungeonTurnData(self.round)
         self.challenge = DungeonChallengeData(self.round)
         self.battle    = DungeonBattleData(self.challenge)
-
+        self.events = Recorder()
         
 class DungeonGameData():
     def __init__(self):
@@ -28,27 +49,27 @@ class DungeonGameData():
         self.__player_in_game  = list()
         
         # init __monster_in_game
-        self.__monster_in_game.append(GoblinMonster())
-        self.__monster_in_game.append(GoblinMonster())
-        self.__monster_in_game.append(SkeletonWarriorMonster())
-        self.__monster_in_game.append(SkeletonWarriorMonster())
-        self.__monster_in_game.append(OrkMonster())
-        self.__monster_in_game.append(OrkMonster())
-        self.__monster_in_game.append(VampireMonster())
-        self.__monster_in_game.append(VampireMonster())
-        self.__monster_in_game.append(GolamMonster())
-        self.__monster_in_game.append(GolamMonster())
-        self.__monster_in_game.append(ReaperMonster())
-        self.__monster_in_game.append(SatanMonster())
-        self.__monster_in_game.append(DragonMonster())
+        self.__monster_in_game.append(MonsterGoblin())
+        self.__monster_in_game.append(MonsterGoblin())
+        self.__monster_in_game.append(MonsterSkeletonWarrior())
+        self.__monster_in_game.append(MonsterSkeletonWarrior())
+        self.__monster_in_game.append(MonsterOrk())
+        self.__monster_in_game.append(MonsterOrk())
+        self.__monster_in_game.append(MonsterVampire())
+        self.__monster_in_game.append(MonsterVampire())
+        self.__monster_in_game.append(MonsterGolam())
+        self.__monster_in_game.append(MonsterGolam())
+        self.__monster_in_game.append(MonsterReaper())
+        self.__monster_in_game.append(MonsterSatan())
+        self.__monster_in_game.append(MonsterDragon())
         
         # init __weapon_in_game
-        self.__weapon_in_game.append(TorchWeapon())
-        self.__weapon_in_game.append(HolyGrailWeapon())
-        self.__weapon_in_game.append(SpearWeapon())
-        self.__weapon_in_game.append(ArmorWeapon())
-        self.__weapon_in_game.append(ShieldWeapon())
-        self.__weapon_in_game.append(HeroSwordWeapon())
+        self.__weapon_in_game.append(WeaponArmor())
+        self.__weapon_in_game.append(WeaponHeroSword())
+        self.__weapon_in_game.append(WeaponHolyGrail())
+        self.__weapon_in_game.append(WeaponShield())
+        self.__weapon_in_game.append(WeaponSpear())
+        self.__weapon_in_game.append(WeaponTorch())
         
 
     def monster_list(self):
@@ -168,46 +189,3 @@ class DungeonBattleData():
     def reset(self):
         self.battle_monster = self.monster_in_dungeon[-1] if self.monster_in_dungeon else None
         # self.battle_damage  = self.battle_monster.damage() if self.battle_monster else 0
-
-
-def test_print_items_with_title(title,items):
-    print('{}({}) : '.format(title,len(items)), end=' ')
-    for item in items:
-        print(item, end=' ')
-    print('')
-
-def test_script():
-    dungeon = Dungeon()
-    
-    players = [ Player('kein'), Player('salmon'), Player('sshong'), Player('wool') ]
-    
-    for player in players:
-        dungeon.game.add_player(player)
-    
-    print('### TEST GAME ###')
-    game = dungeon.game
-    
-    test_print_items_with_title('players', game.player_list())
-    test_print_items_with_title('monsters', game.monster_list())
-    test_print_items_with_title('weapons', game.weapon_list())
-    
-    
-    print('### TEST ROUND ###')
-    round = dungeon.round
-    round.reset()
-    
-    test_print_items_with_title('player_in_round', round.player_in_round)
-    test_print_items_with_title('monster_in_deck', round.monster_in_deck)
-    test_print_items_with_title('monster_in_dungeon', round.monster_in_dungeon)
-    test_print_items_with_title('weapon_in_dungeon', round.weapon_in_dungeon)
-    
-    
-    print('### TEST TURN ###')
-
-
-    print('### TEST CHALLENGE ###')
-    
-    
-    print('### TEST BATTLE ###')
-if __name__ == "__main__":
-    test_script()
