@@ -34,26 +34,54 @@ def test_dungeon():
     pass
 
 '''
+import sys
+
+class TestError(Exception):
+    def __init__(self,value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
+        
+
+def print_error(prefix, msg):
+    msg = '[{}] : {}'.format(prefix, msg)
+    print(msg)
+
+
+def test(title, test_function):
+    print('Test {} begin'.format(title))
+    result = 'completed' if test_function() else 'failed'
+    print('Test {} {}'.format(title, result))
+
+
+
+
+
 from mandom.weapons.weapon_armor import WeaponArmor
 from mandom.hero import Hero
 def test_hero():
-    h = Hero()
-    print(h.armor())
-    h.equipe_weapon([WeaponArmor()])
-    print(h.armor())
+    try:
+        hero = Hero()
+        if hero.armor() != 0:
+            raise TestError('hero init failed')
+        
+        hero.equipe_weapon([WeaponArmor()])
+        if hero.armor() != 8:
+            raise TestError('hero equipe_weapon failed')
+    except TestError as e:
+        print_error('TestError', e)
+        return False
     return True
-
-
-
-
-
-
 
 
 from mandom.status.status_type import StatusType
 def test_status_type():
-    for status in StatusType:
-        print(status)
+    try:
+        for status in StatusType:
+            status
+    except TestError as e:
+        print_error('Error', e)
+        return False
     return True
 
 def test_status_manager():
@@ -118,14 +146,9 @@ def test_cases(title, test_function, test_case):
             print('Case({}) Failed : result({}) but expected({})'.format(case, result, expected_result))
     print('Test {} end'.format(title))
 
-def test(title, test_function):
-    print('Test {} begin : '.format(title), end=' ')
-    if test_function() == True:
-        print('Complete !!!')
-    else:
-        print('Failed !!!')
+
 
 if __name__ == "__main__":
-    test('Dungeon', test_dungeon)
+    # test('Dungeon', test_dungeon)
     test('Hero', test_hero)
     test('StatusType', test_status_type)
