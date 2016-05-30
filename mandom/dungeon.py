@@ -133,12 +133,15 @@ class DungeonRoundData():
         self.monster_in_deck    = list()
         self.monster_in_dungeon = list()
         self.weapon_in_dungeon  = list()
+        
+        self.last_challenger = None
     
     def reset(self):
         self.monster_in_deck    = self.__dungeon_game_data.clone_monster_list()
         self.monster_in_dungeon = list()
         self.weapon_in_dungeon  = self.__dungeon_game_data.clone_weapon_list()
         self.player_in_round    = self.__dungeon_game_data.clone_player_list()
+        self.last_challenger    = None
 
     
 class DungeonTurnData():

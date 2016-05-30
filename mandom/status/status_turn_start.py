@@ -2,20 +2,20 @@
 # DungeonOfMandom
 # 2016.05.28
 #
-# StatusRoundStart
+# StatusTurnStart
 #
 
 from mandom.status.status import Status
 from mandom.status.status_type import StatusType
 
-class StatusRoundStart(Status):
+class StatusTurnStart(Status):
     def __init__(self):
-        super().__init__('StatusRoundStart', StatusType.round_start, StatusType.next_turn)
+        super().__init__('StatusTurnStart', StatusType.turn_start, StatusType.turn_end)
     
     def update(dungeon):
-        print('StatusRoundStart')
+        print('StatusTurnStart')
         
-        dungeon.round.reset()
+        dungeon.turn.reset()
         
         return self.success_end_status()
         

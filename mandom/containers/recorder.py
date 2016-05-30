@@ -9,15 +9,15 @@ class Recorder:
     def __init__(self):
         self.events = []
 
-    def record_size(self):
+    def size(self):
         return len(self.events)
 
-    def record_item_at(self, idx):
+    def at(self, idx):
         return self.events[idx]
 
-    def record_insert(self, item):
+    def insert(self, item):
         self.events.append(item)
     
-    def record_remove(self, item):
+    def remove(self, item):
         self.events.remove(item)
     

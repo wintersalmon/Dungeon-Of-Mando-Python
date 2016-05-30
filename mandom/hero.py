@@ -15,6 +15,10 @@ class Hero():
     
     def armor(self):
         return self.__armor
+    
+    def give_damage(self,damage):
+        armor_left = self.__armor - damage
+        self.__armor = armor_left if armor_left > 0 else 0
         
     def equipe_weapon(self, weapons_equipped):
         self.__weapons_equipped = weapons_equipped

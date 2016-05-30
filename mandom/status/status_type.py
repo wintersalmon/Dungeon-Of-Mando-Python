@@ -8,6 +8,8 @@
 from mandom.containers.auto_number_enum import AutoNumberEnum
 
 class StatusType(AutoNumberEnum):
+    none = ()
+    
     game_start = ()
     game_end   = ()
     
@@ -25,4 +27,5 @@ class StatusType(AutoNumberEnum):
 
     next_battle = ()
     battle_start = ()
+    battle_execute = ()
     battle_end = ()
