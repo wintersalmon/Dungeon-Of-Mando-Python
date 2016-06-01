@@ -28,7 +28,6 @@ from mandom.events.event import Event
 
 from mandom.hero   import Hero
 from mandom.player import Player
-from mandom.status_manager import StatusManager
 
 from mandom.containers.recorder import Recorder
 

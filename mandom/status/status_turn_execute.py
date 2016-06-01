@@ -12,7 +12,7 @@ class StatusTurnExecute(Status):
     def __init__(self):
         super().__init__('StatusTurnExecute', StatusType.turn_execute, StatusType.turn_end)
     
-    def update(dungeon):
+    def update(self, dungeon):
         print('StatusTurnExecute')
         
         # dungeon.turn.turn_action
@@ -22,5 +22,5 @@ class StatusTurnExecute(Status):
         
         if dungeon.turn.turn_action != None:
             return self.success_end_status()
-        else
+        else:
             return self.failed_end_status()

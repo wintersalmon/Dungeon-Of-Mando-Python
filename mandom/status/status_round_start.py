@@ -12,7 +12,7 @@ class StatusRoundStart(Status):
     def __init__(self):
         super().__init__('StatusRoundStart', StatusType.round_start, StatusType.next_turn)
     
-    def update(dungeon):
+    def update(self, dungeon):
         print('StatusRoundStart')
         
         dungeon.round.reset()

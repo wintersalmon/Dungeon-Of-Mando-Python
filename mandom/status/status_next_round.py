@@ -12,10 +12,10 @@ class StatusNextRound(Status):
     def __init__(self):
         super().__init__('StatusNextRound', StatusType.next_round, StatusType.round_start, StatusType.game_end)
     
-    def update(dungeon):
+    def update(self, dungeon):
         print('StatusNextRound')
         
-        players = dungeon.player_list()
+        players = dungeon.game.player_list()
         
         no_winner = True        
         for player in players:

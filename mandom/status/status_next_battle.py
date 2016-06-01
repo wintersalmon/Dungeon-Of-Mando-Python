@@ -12,7 +12,7 @@ class StatusNextBattle(Status):
     def __init__(self):
         super().__init__('StatusNextBattle', StatusType.next_battle, StatusType.battle_start, StatusType.challenge_end)
     
-    def update(dungeon):
+    def update(self, dungeon):
         print('StatusNextBattle')
         
         monster_count = len(dungeon.challenge.monster_in_dungeon)

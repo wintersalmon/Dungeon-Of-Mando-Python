@@ -12,7 +12,7 @@ class StatusNextTurn(Status):
     def __init__(self):
         super().__init__('StatusNextTurn', StatusType.next_turn, StatusType.turn_start, StatusType.challenge_start)
     
-    def update(dungeon):
+    def update(self, dungeon):
         print('StatusNextTurn')
         
         player_in_round = dungeon.round.player_in_round

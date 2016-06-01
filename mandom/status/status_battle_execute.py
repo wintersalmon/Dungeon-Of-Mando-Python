@@ -13,7 +13,7 @@ class StatusBattleExecute(Status):
     def __init__(self):
         super().__init__('StatusBattleExecute', StatusType.battle_execute, StatusType.battle_end)
     
-    def update(dungeon):
+    def update(self,dungeon):
         print('StatusBattleExecute')
         
         monster = dungeon.battle.battle_monster

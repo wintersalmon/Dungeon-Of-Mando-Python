@@ -12,7 +12,7 @@ class StatusRoundEnd(Status):
     def __init__(self):
         super().__init__('StatusRoundEnd', StatusType.round_end, StatusType.next_round)
     
-    def update(dungeon):
+    def update(self, dungeon):
         print('StatusRoundEnd')
         
         player_in_round = dungeon.round.player_in_round

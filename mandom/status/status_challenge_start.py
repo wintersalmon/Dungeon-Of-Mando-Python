@@ -12,7 +12,7 @@ class StatusChallengeStart(Status):
     def __init__(self):
         super().__init__('StatusChallengeStart', StatusType.challenge_start, StatusType.next_battle)
     
-    def update(dungeon):
+    def update(self, dungeon):
         print('StatusChallengeStart')
         
         dungeon.challenge.reset()

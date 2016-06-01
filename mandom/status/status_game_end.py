@@ -12,7 +12,7 @@ class StatusGameEnd(Status):
     def __init__(self):
         super().__init__('StatusGameEnd', StatusType.game_end, StatusType.none)
     
-    def update(dungeon):
+    def update(self, dungeon):
         print('StatusGameEnd')
         
         return self.success_end_status()

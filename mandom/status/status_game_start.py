@@ -12,11 +12,11 @@ class StatusGameStart(Status):
     def __init__(self):
         super().__init__('StatusGameStart', StatusType.game_start, StatusType.next_round)
     
-    def update(dungeon):
+    def update(self,dungeon):
         
         print('StatusGameStart')
         
-        players = dungeon.player_list()
+        players = dungeon.game.player_list()
         for player in players:
             player.reset()
         

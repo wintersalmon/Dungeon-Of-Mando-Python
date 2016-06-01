@@ -10,9 +10,9 @@ from mandom.status.status_type import StatusType
 
 class StatusTurnStart(Status):
     def __init__(self):
-        super().__init__('StatusTurnStart', StatusType.turn_start, StatusType.turn_end)
+        super().__init__('StatusTurnStart', StatusType.turn_start, StatusType.turn_execute)
     
-    def update(dungeon):
+    def update(self, dungeon):
         print('StatusTurnStart')
         
         dungeon.turn.reset()

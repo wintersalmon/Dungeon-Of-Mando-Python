@@ -94,6 +94,7 @@ def test_status_manager():
 
 
 from mandom.dungeon import Dungeon, Player
+from mandom.status_manager import StatusManager
 
 def test_dungeon():
     dungeon = Dungeon()
@@ -103,6 +104,13 @@ def test_dungeon():
     for player in players:
         dungeon.game.add_player(player)
     
+    manager = StatusManager(dungeon)
+    manager.start()
+    
+    while not manager.is_end():
+        line = input('press something')
+        manager.next()
+    '''
     print('### TEST GAME ###')
     game = dungeon.game
     
@@ -128,6 +136,7 @@ def test_dungeon():
     
     print('### TEST BATTLE ###')
     return True
+    '''
 
 
 def test_print_items_with_title(title,items):
@@ -149,6 +158,6 @@ def test_cases(title, test_function, test_case):
 
 
 if __name__ == "__main__":
-    # test('Dungeon', test_dungeon)
-    test('Hero', test_hero)
-    test('StatusType', test_status_type)
+    test('Dungeon', test_dungeon)
+    # test('Hero', test_hero)
+    # test('StatusType', test_status_type)

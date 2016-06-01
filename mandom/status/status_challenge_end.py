@@ -12,7 +12,7 @@ class StatusChallengeEnd(Status):
     def __init__(self):
         super().__init__('StatusChallengeEnd', StatusType.challenge_end, StatusType.round_end)
     
-    def update(dungeon):
+    def update(self, dungeon):
         print('StatusChallengeEnd')
         
         hero = dungeon.challenge.challenge_hero
