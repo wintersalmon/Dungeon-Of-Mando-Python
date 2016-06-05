@@ -55,18 +55,18 @@ class PhaseGame():
 
 
     def start(self):
-        for player in player_list:
+        for player in self.__player_in_game:
             player.reset()
 
     def has_next_round(self):
         # has winner
-        for player in player_list:
+        for player in self.__player_in_game:
             if player.victory_point() == 2:
                 return False
         
         # has only one surviver
         survivers = 0
-        for player in player_list:
+        for player in self.__player_in_game:
             if player.life_point() > 0:
                 survivers += 1
         
@@ -107,31 +107,3 @@ class PhaseGame():
         
     def clone_player_list(self):
         return self.__player_in_game.copy()
-    
-
-'''
-
-    def monster(self,idx):
-        if idx in range(len(self.__monster_in_game)):
-            return self.__monster_in_game[idx]
-        return None
-        
-    def weapon(self,idx):
-        if idx in range(len(self.__weapon_in_game)):
-            return self.__weapon_in_game[idx]
-        return None
-    
-    def player(self,idx):
-        if idx in range(len(self.__player_in_game)):
-            return self.__player_in_game[idx]
-        return None
-        
-    def number_of_monsters(self):
-        return len(self.__monster_in_game)
-    
-    def number_of_weapons(self):
-        return len(self.__weapon_in_game)
-        
-    def number_of_players(self):
-        return len(self.__player_in_game)
-'''

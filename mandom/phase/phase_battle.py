@@ -7,10 +7,11 @@
 
 class PhaseBattle():
     def __init__(self, phase_challenge):
-        self.monster_in_dungeon = phase_challenge.monster_in_dungeon
-        self.weapon_in_dungeon  = phase_challenge.weapon_in_dungeon
-        self.challenge_player   = phase_challenge.challenge_player
-        self.challenge_hero     = phase_challenge.challenge_hero
+        self.__phase_challenge = phase_challenge
+        self.monster_in_dungeon = self.__phase_challenge.monster_in_dungeon
+        self.weapon_in_dungeon  = self.__phase_challenge.weapon_in_dungeon
+        self.challenge_player   = self.__phase_challenge.challenge_player
+        self.challenge_hero     = self.__phase_challenge.challenge_hero
         
         self.battle_monster = None
         self.battle_damage  = 0
@@ -18,6 +19,11 @@ class PhaseBattle():
 
         
     def reset(self):
+        self.monster_in_dungeon = self.__phase_challenge.monster_in_dungeon
+        self.weapon_in_dungeon  = self.__phase_challenge.weapon_in_dungeon
+        self.challenge_player   = self.__phase_challenge.challenge_player
+        self.challenge_hero     = self.__phase_challenge.challenge_hero
+        
         self.battle_monster = self.monster_in_dungeon[-1] if self.monster_in_dungeon else None
         self.battle_damage  = self.battle_monster.damage() if self.battle_monster else 0
         self.battle_win     = False

@@ -12,11 +12,15 @@ class DungeonController():
     def __init__(self, dungeon):
         self.dungeon = dungeon
         self.status_controller = DungeonStatusController(self.dungeon)
-    def start_game(self):
-        pass
-    
-    def has_next_event(self):
-        return False
+        self.current_status = None
         
-    def next_event(self):
-        return None
+    def game_start(self):
+        self.status_controller.begin()
+        self.current_status = None
+    
+    def game_running(self):
+        return self.status_controller.has_next()
+    
+    def update(self):
+        self.current_status = self.status_controller.next()
+        print(self.current_status)
