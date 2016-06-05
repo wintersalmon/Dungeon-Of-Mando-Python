@@ -12,26 +12,25 @@ class StatusType(AutoNumberEnum):
     
     game = ()
     game_start = ()
-    game_next_round = ()
     game_end   = ()
     
     round = ()
+    next_round = ()
     round_start = ()
-    round_next_turn = ()
-    round_challenge = ()
     round_end = ()
     
     turn = ()
+    next_turn = ()
     turn_start = ()
     turn_execute = ()
     turn_end = ()
     
     challenge = ()
     challenge_start = ()
-    challenge_next_battle = ()
     challenge_end = ()
     
     battle = ()
+    next_battle = ()
     battle_start = ()
     battle_execute = ()
     battle_end = ()

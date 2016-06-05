@@ -8,39 +8,41 @@
 # from monster import GoblinMonster, SkeletonWarriorMonster, OrkMonster, VampireMonster, GolamMonster, ReaperMonster, SatanMonster, DragonMonster
 # from weapon  import TorchWeapon, HolyGrailWeapon, SpearWeapon, ArmorWeapon, ShieldWeapon, HeroSwordWeapon
 
-from mandom.monsters.monster_dragon  import MonsterDragon
-from mandom.monsters.monster_goblin  import MonsterGoblin
-from mandom.monsters.monster_golam   import MonsterGolam
-from mandom.monsters.monster_ork     import MonsterOrk
-from mandom.monsters.monster_reaper  import MonsterReaper
-from mandom.monsters.monster_satan   import MonsterSatan
-from mandom.monsters.monster_vampire import MonsterVampire
-from mandom.monsters.monster_skeleton_warrior import MonsterSkeletonWarrior
-
-from mandom.weapons.weapon_armor  import WeaponArmor
-from mandom.weapons.weapon_shield import WeaponShield
-from mandom.weapons.weapon_spear  import WeaponSpear
-from mandom.weapons.weapon_torch  import WeaponTorch
-from mandom.weapons.weapon_hero_sword import WeaponHeroSword
-from mandom.weapons.weapon_holy_grail import WeaponHolyGrail
-
 from mandom.events.event import Event
 
-from mandom.hero   import Hero
 from mandom.player import Player
 
 from mandom.containers.recorder import Recorder
 
+from mandom.phase.phase_game      import PhaseGame
+from mandom.phase.phase_round     import PhaseRound
+from mandom.phase.phase_turn      import PhaseTurn
+from mandom.phase.phase_challenge import PhaseChallenge
+from mandom.phase.phase_battle    import PhaseBattle
 
 class Dungeon():
     def __init__(self):
+        self.events = Recorder()
+        
+        self.phase_game   = PhaseGame()
+        self.phase_round  = PhaseRound(self.phase_game)
+        self.phase_turn   = PhaseTurn(self.phase_round)
+        self.phase_challenge = PhaseChallenge(self.phase_round)
+        self.phase_battle = PhaseBattle(self.phase_challenge)
+        
+        
+        
+        
+        
+'''
         self.game  = DungeonGameData()
         self.round = DungeonRoundData(self.game)
         self.turn  = DungeonTurnData(self.round)
         self.challenge = DungeonChallengeData(self.round)
         self.battle    = DungeonBattleData(self.challenge)
-        self.events = Recorder()
-        
+'''
+
+'''
 class DungeonGameData():
     def __init__(self):
         self.__monster_in_game = list()
@@ -191,3 +193,4 @@ class DungeonBattleData():
     def reset(self):
         self.battle_monster = self.monster_in_dungeon[-1] if self.monster_in_dungeon else None
         # self.battle_damage  = self.battle_monster.damage() if self.battle_monster else 0
+    '''
