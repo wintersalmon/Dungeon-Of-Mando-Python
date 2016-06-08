@@ -37,8 +37,6 @@ def update():
     #while dungeon_controller.last_status_execute_success:
     #    dungeon_controller.update()
     dungeon_controller.update()
-    if has_player_passed(0):
-        print('###################')
     return True
 
 def num_of_player_in_game():

@@ -117,21 +117,17 @@ class DungeonViewer():
     def has_player_passed(self, playerNumber):
         try:
             player = self.dungeon.phase_game.player_list()[player_num]
+            if player in self.dungeon.phase_round.player_in_round:
+                return True
         except:
-            player = None
-        if player in self.dungeon.phase_round.player_in_round:
-            return True
-        else:
             return False
         
     def is_players_turn(self, playerNumber):
         try:
             player = self.dungeon.phase_game.player_list()[player_num]
+            if player == self.dungeon.phase_turn.turn_player:
+                return True
         except:
-            player = None
-        if player == self.dungeon.phase_turn.turn_player:
-            return True
-        else:
             return False
 
     def action_turn_pass(self):
