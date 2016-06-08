@@ -34,8 +34,11 @@ def is_running():
     return dungeon_controller.game_running()
 
 def update():
-    while dungeon_controller.last_status_execute_success:
-        dungeon_controller.update()
+    #while dungeon_controller.last_status_execute_success:
+    #    dungeon_controller.update()
+    dungeon_controller.update()
+    if has_player_passed(0):
+        print('###################')
     return True
 
 def num_of_player_in_game():
@@ -74,6 +77,30 @@ def hero_remaining_armor():
 
 
 
+def get_draw_monster_name():
+    return dungeon_viewer.get_draw_monster_name()
+
+def get_battle_monster_name():
+    return dungeon_viewer.get_battle_monster_name()
+    
+def has_player_passed(playerNumber):
+    return dungeon_viewer.has_player_passed(playerNumber)
+    
+    
+def is_players_turn(playerNumber):
+    return dungeon_viewer.is_players_turn(playerNumber)
+    
+    
+def action_turn_pass():
+    return dungeon_viewer.action_turn_pass()
+    
+def action_turn_monster_to_dungeon():
+    return dungeon_viewer.action_turn_monster_to_dungeon()
+    
+def action_turn_weapon_remove(weaponNumber):
+    return dungeon_viewer.action_turn_weapon_remove(weaponNumber)
+    
+
 
 
 
@@ -96,7 +123,7 @@ def test():
         update()
         show()
         command()
-    
+       
 test()
 
 

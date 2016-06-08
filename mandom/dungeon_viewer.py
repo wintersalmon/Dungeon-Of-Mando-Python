@@ -7,6 +7,7 @@
 
 from mandom.dungeon import Dungeon
 from mandom.status.status_type import StatusType
+from mandom.monsters.monster_type import MonsterType
 
 class DungeonViewer():
     def __init__(self, dungeon):
@@ -98,6 +99,61 @@ class DungeonViewer():
         return armor
         
         
+    def get_draw_monster_name(self):
+        try:
+            monster = self.dungeon.phase_round.monster_in_deck[-1]
+        except:
+            monster = None
+        return monster.name() if monster else 'no_monster'
+
+    def get_battle_monster_name(self):
+        try:
+            monster = self.dungeon.phase_round.monster_in_dungeon[-1]
+        except:
+            monster = None
+        return monster.name() if monster else 'no_monster'
+        
+        
+    def has_player_passed(self, playerNumber):
+        try:
+            player = self.dungeon.phase_game.player_list()[player_num]
+        except:
+            player = None
+        if player in self.dungeon.phase_round.player_in_round:
+            return True
+        else:
+            return False
+        
+    def is_players_turn(self, playerNumber):
+        try:
+            player = self.dungeon.phase_game.player_list()[player_num]
+        except:
+            player = None
+        if player == self.dungeon.phase_turn.turn_player:
+            return True
+        else:
+            return False
+
+    def action_turn_pass(self):
+        self.dungeon.phase_turn.turn_action = 0
+        return True
+    
+    def action_turn_monster_to_dungeon(self):
+        self.dungeon.phase_turn.turn_action = 1
+        return True
+    
+    def action_turn_weapon_remove(self,weaponNumber):
+        try:
+            weapon = self.dungeon.phase_game.weapon_list()[weaponNumber]
+        except:
+            weapon = None
+        if weapon:
+            self.dungeon.phase_turn.turn_action = 2
+            self.dungeon.phase_turn.turn_remove_weapon = weapon
+            return True
+    
+    
+    
     def show(self):
         print('hi', self.num_of_player_in_game())
         for i in range(self.num_of_player_in_game()):
