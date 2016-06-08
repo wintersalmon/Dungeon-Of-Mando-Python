@@ -5,6 +5,8 @@
 # PhaseRound
 #
 
+import random
+
 class PhaseRound():
     def __init__(self, phase_game):
         self.__phase_game  = phase_game
@@ -26,6 +28,7 @@ class PhaseRound():
 
     def start(self):
         self.reset()
+        self.shuffle_deck()
         
     def has_next_turn(self):
         # more then one player in round
@@ -38,4 +41,10 @@ class PhaseRound():
         self.last_challenger = self.player_in_round[0] if self.player_in_round else None
     
 
-    
+    def shuffle_deck(self):
+        deck_size = len(self.monster_in_deck)
+        random.seed()
+        for i in range(0,100):
+            idx = random.randrange(0,deck_size)
+            monster = self.monster_in_deck.pop(idx)
+            self.monster_in_deck.append(monster)
