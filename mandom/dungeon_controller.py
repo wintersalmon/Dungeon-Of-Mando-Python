@@ -16,7 +16,7 @@ class DungeonController():
         self.status_controller = DungeonStatusController(self.dungeon)
         self.current_status = None
         self.last_status_execute_success = False
-        self.event_recorder = list()
+        #self.event_recorder = list()
         
     def game_start(self):
         self.status_controller.begin()
@@ -32,25 +32,23 @@ class DungeonController():
             self.current_status = self.status_controller.next()
             changed_status = self.current_status.data().name if self.current_status else 'no_type'
             self.dungeon.change_status_code(self.current_status.data())
-            event = 'status changed from {} to {}'.format(prev_status, changed_status)
-            self.event_recorder.append(event)
+            event = 'from {} to {}'.format(prev_status, changed_status)
+            self.dungeon.event_recorder.append(event)
         self.last_status_execute_success = self.current_status.execute(self.dungeon)
     
     def get_last_event(self):
         try:
-            event = self.event_recorder[-1]
+            event = dungeon.event_recorder[-1]
         except:
             return 'error_no_event'
         return event
     
     def action_turn_pass(self):
         self.dungeon.phase_turn.turn_action = 0
-        self.update()
         return True
         
     def action_turn_monster_to_dungeon(self):
         self.dungeon.phase_turn.turn_action = 1
-        self.update()
         return True
         
     def action_turn_weapon_remove(self, weaponNumber):
@@ -61,21 +59,20 @@ class DungeonController():
         if weapon:
             self.dungeon.phase_turn.turn_remove_weapon = weapon
             self.dungeon.phase_turn.turn_action = 2
-            self.update()
             return True
         return False
         
     
     def get_event_count(self):
         try:
-            return len(self.event_recorder)
+            return len(self.dungeon.event_recorder)
         except:
             return 0
 
 
     def get_event(self,i):
         try:
-            return self.event_recorder[i]
+            return self.dungeon.event_recorder[i]
         except:
             return 'index_error'
 

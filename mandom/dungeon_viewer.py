@@ -129,25 +129,32 @@ class DungeonViewer():
         except:
             return False
 
-    def action_turn_pass(self):
-        self.dungeon.phase_turn.turn_action = 0
-        return True
     
-    def action_turn_monster_to_dungeon(self):
-        self.dungeon.phase_turn.turn_action = 1
-        return True
-    
-    def action_turn_weapon_remove(self,weaponNumber):
+    def has_weapon(self, weaponNumber):
         try:
             weapon = self.dungeon.phase_game.weapon_list()[weaponNumber]
         except:
             weapon = None
-        if weapon:
-            self.dungeon.phase_turn.turn_action = 2
-            self.dungeon.phase_turn.turn_remove_weapon = weapon
+        if weapon in self.dungeon.phase_round.weapon_in_dungeon:
             return True
-
+        else:
+            return False
     
+    
+    def is_status_turn(self):
+        try:
+            code = self.dungeon.current_status_code
+            if code == StatusType.turn_init:
+                return True
+            if code == StatusType.turn_start:
+                return True
+            if code == StatusType.turn_end:
+                return True
+            if code == StatusType.turn_execute:
+                return True
+        except:
+            return False
+        return False
     
     def show(self):
         print('hi', self.num_of_player_in_game())

@@ -27,6 +27,8 @@ class Dungeon():
         
         self.current_status_code = None
         
+        self.event_recorder = list()
+        
     def change_status_code(self, new_status_code):
         self.current_status_code = new_status_code
         

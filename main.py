@@ -36,9 +36,9 @@ def is_running():
     return dungeon_controller.game_running()
 
 def update():
-    #while dungeon_controller.last_status_execute_success:
-    #    dungeon_controller.update()
-    dungeon_controller.update()
+    while dungeon_controller.last_status_execute_success:
+        dungeon_controller.update()
+    #dungeon_controller.update()
     #print(dungeon_controller.get_last_event())
     return True
 
@@ -127,6 +127,7 @@ def test():
     start()
     while is_running():
         update()
+        print(dungeon.event_recorder[-1])
         show()
         if dungeon_controller.require_command_input_turn():
             line = input('command : ')
@@ -140,7 +141,7 @@ def test():
             update()
         #command()
        
-#test()
+test()
 
 
 

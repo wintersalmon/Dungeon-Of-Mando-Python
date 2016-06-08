@@ -33,6 +33,11 @@ class StatusBattleEnd(TreeNode):
         
     def execute(self, dungeon):
         dungeon.phase_battle.end()
+        monster = dungeon.phase_battle.battle_monster
+        damage  = dungeon.phase_battle.battle_damage
+        result  = 'win' if dungeon.phase_battle.battle_win else 'recieved {} damage'.format(damage)
+        event = 'battle vs {} {}'.format(monster,result)
+        dungeon.event_recorder.append(event)
         return True
         
 class StatusBattle(TreeNode):
