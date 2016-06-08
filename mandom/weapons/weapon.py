@@ -23,6 +23,12 @@ class Weapon:
     
     def armor(self):
         return self.__armor
+        
+    def reset_slayer_monster(self):
+        self.__can_slayer_monsters.clear()
+        
+    def add_slayer_monster(self, monster_code):
+        self.__can_slayer_monsters.append(monster_code)
 
     def can_slayer_monster(self,monster):
         return monster.code() in self.__can_slayer_monsters

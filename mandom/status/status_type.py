@@ -10,28 +10,28 @@ from mandom.containers.auto_number_enum import AutoNumberEnum
 class StatusType(AutoNumberEnum):
     none = ()
     
-    game = ()
+    game_init = ()
     game_start = ()
     game_next_round = ()
     game_end   = ()
     
-    round = ()
+    round_init = ()
     round_start = ()
     round_next_turn = ()
     round_challenge = ()
     round_end = ()
     
-    turn = ()
+    turn_init = ()
     turn_start = ()
     turn_execute = ()
     turn_end = ()
     
-    challenge = ()
+    challenge_init = ()
     challenge_start = ()
     challenge_next_battle = ()
     challenge_end = ()
     
-    battle = ()
+    battle_init = ()
     battle_start = ()
     battle_execute = ()
     battle_end = ()

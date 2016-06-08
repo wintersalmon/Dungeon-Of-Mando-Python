@@ -5,11 +5,11 @@
 # dungeon
 #
 
-from mandom.events.event import Event
+# from mandom.events.event import Event
 
-from mandom.player import Player
+# from mandom.player import Player
 
-from mandom.containers.recorder import Recorder
+# from mandom.containers.recorder import Recorder
 
 from mandom.phase.phase_game      import PhaseGame
 from mandom.phase.phase_round     import PhaseRound
@@ -19,10 +19,14 @@ from mandom.phase.phase_battle    import PhaseBattle
 
 class Dungeon():
     def __init__(self):
-        self.events = Recorder()
-        
         self.phase_game   = PhaseGame()
         self.phase_round  = PhaseRound(self.phase_game)
         self.phase_turn   = PhaseTurn(self.phase_round)
         self.phase_challenge = PhaseChallenge(self.phase_round)
         self.phase_battle = PhaseBattle(self.phase_challenge)
+        
+        self.current_status_code = None
+        
+    def change_status_code(self, new_status_code):
+        self.current_status_code = new_status_code
+        

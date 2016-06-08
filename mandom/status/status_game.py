@@ -18,6 +18,9 @@ from mandom.status.status_round import StatusRound
 class StatusGameStart(TreeNode):
     def __init__(self):
         super().__init__(StatusType.game_start)
+    def execute(self, dungeon):
+        dungeon.phase_game.start()
+        return True
 
 class StatusGameNextRound(DynamicTreeNode):
     def __init__(self, dungeon):
@@ -27,15 +30,22 @@ class StatusGameNextRound(DynamicTreeNode):
         # self.add_child(StatusRound(dungeon))
         # self.add_child(StatusRound(dungeon))
         # self.add_child(StatusRound(dungeon))
+    def execute(self, dungeon):
+        return True
     
 class StatusGameEnd(TreeNode):
     def __init__(self):
         super().__init__(StatusType.game_end)
+    def execute(self, dungeon):
+        dungeon.phase_game.end()
+        return True
         
 class StatusGame(TreeNode):
     def __init__(self, dungeon):
-        super().__init__(StatusType.game)
+        super().__init__(StatusType.game_init)
         self.add_child(StatusGameStart())
         self.add_child(StatusGameNextRound(dungeon))
         self.add_child(StatusGameEnd())
-
+    def execute(self, dungeon):
+        return True
+        

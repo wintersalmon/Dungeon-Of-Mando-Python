@@ -22,9 +22,8 @@ class Hero():
         
     def equipe_weapon(self, weapons_equipped):
         self.__weapons_equipped = weapons_equipped
-        self.__reset_armor()
         
-    def __reset_armor(self):
+    def reset_armor(self):
         # equipped_armor = sum(list(map(lambda weapon:weapon.armor(), self.__weapons_equipped)))
         # equipped_armor = 0
         # for weapon in self.__weapons_equipped:

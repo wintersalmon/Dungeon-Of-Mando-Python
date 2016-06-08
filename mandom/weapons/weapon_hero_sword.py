@@ -13,7 +13,7 @@ class WeaponHeroSword(Weapon):
     slayer_monsters = []
     def __init__(self):
         super().__init__(WeaponType.hero_sword, 'Hero Sword', 0, WeaponHeroSword.slayer_monsters)
-
-    def DeclareSlayerableMonster(self,monsterName):
-        self.__can_slayer_slayer_monsters.clear()
-        self.__can_slayer_slayer_monsters.append(monsterName)
+        
+    def declare_target_monster(self,monster_code):
+        self.reset_slayer_monster()
+        self.add_slayer_monster(monster_code)

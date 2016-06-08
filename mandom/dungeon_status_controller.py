@@ -30,7 +30,7 @@ class DungeonStatusController():
     def next(self):
         if self.current_child_idx == -1:
             self.current_child_idx += 1
-            return self.current_status.data()
+            return self.current_status
         elif self.MoveToChild():
             return self.next()
         elif self.MoveToParent():

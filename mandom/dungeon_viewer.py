@@ -6,6 +6,7 @@
 #
 
 from mandom.dungeon import Dungeon
+from mandom.status.status_type import StatusType
 
 class DungeonViewer():
     def __init__(self, dungeon):
@@ -14,6 +15,166 @@ class DungeonViewer():
     # def update(self):
     #     print('update DungeonViewer')
     
+    def num_of_player_in_game(self):
+        try:
+            num = len(self.dungeon.phase_game.player_list() )
+        except:
+            num = -1
+        return num
+    
+    def get_player_life_point(self,player_num):
+        try:
+            life_point = self.dungeon.phase_game.player_list()[player_num].life_point()
+        except:
+            life_point = -1
+        return life_point
+
+    def get_player_victor_point(self,player_num):
+        try:
+            victory_point = self.dungeon.phase_game.player_list()[player_num].victory_point()
+        except:
+            victory_point = -1
+        return victory_point
+    
+    def get_player_name(self,player_num):
+        try:
+            player_name = self.dungeon.phase_game.player_list()[player_num].name()
+        except:
+            player_name = 'error_name'
+        return player_name
+        
+    def get_current_turn_player(self):
+        num = -1
+        try:
+            turn_player = self.dungeon.phase_turn.turn_player
+            for i, player in enumerate(self.dungeon.phase_game.player_list()):
+                if player == turn_player:
+                    num = i
+        except:
+            num = -2
+        return num
+    
+    def num_of_monster_in_deck(self):
+        try:
+            num = len(self.dungeon.phase_round.monster_in_deck)
+        except:
+            num = -1
+        return num
+
+    def num_of_monster_in_dungeon(self):
+        try:
+            num = len(self.dungeon.phase_round.monster_in_dungeon)
+        except:
+            num = -1
+        return num
+        
+    def num_of_weapon_in_dungeon(self):
+        try:
+            num = len(self.dungeon.phase_round.weapon_in_dungeon)
+        except:
+            num = -1
+        return num
+        
+        
+    def top_monster_in_deck(self):
+        try:
+            monster_code = self.dungeon.phase_round.monster_in_deck[-1].code()
+        except:
+            monster_code = -1
+        return monster_code
+        
+    def top_monster_in_dungeon(self):
+        try:
+            monster_code = self.dungeon.phase_round.monster_in_dungeon[-1].code()
+        except:
+            monster_code = -1
+        return monster_code
+        
+    def hero_remaining_armor(self):
+        try:
+            armor = self.dungeon.phase_challenge.challenge_hero.armor()
+        except:
+            armor = -1
+        return armor
+        
+        
+    def show(self):
+        print('hi', self.num_of_player_in_game())
+        for i in range(self.num_of_player_in_game()):
+            name = self.get_player_name(i)
+            life = self.get_player_life_point(i)
+            vp   = self.get_player_victor_point(i)
+            msg = '[{}({},{})]'.format(name, life, vp)
+            if self.get_current_turn_player() == i:
+                msg = '*' + msg
+            print(msg)
+            
+        deck_size = self.num_of_monster_in_deck()
+        dungeon_size = self.num_of_monster_in_dungeon()
+        weapon_size = self.num_of_weapon_in_dungeon()
+        msg2 = '{} / {} [{}]'.format(deck_size, dungeon_size, weapon_size)
+        print(msg2)
+        
+        draw_deck = self.top_monster_in_deck()
+        msg3 = 'top deck : {}'.format(draw_deck)
+        print(msg3)
+        
+        
+        draw_dungeon = self.top_monster_in_dungeon()
+        msg_dungeon = 'top dungeon : {}'.format(draw_dungeon)
+        print(msg_dungeon)
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def show_all(self):
+        status_code = self.dungeon.current_status_code
+        print(status_code)
+        
+        if status_code == StatusType.game_start:
+            self.show_phase_game()
+        
+        if status_code == StatusType.round_start:
+            self.show_phase_round()
+        
+        
+        if status_code == StatusType.turn_start:
+            self.show_phase_turn()
+        
+        
+        if status_code == StatusType.challenge_start:
+            self.show_phase_challenge()
+        
+        
+        if status_code == StatusType.battle_start:
+            self.show_phase_battle()
+            
+    def show_debug(self):
+        status_code = self.dungeon.current_status_code
+        
+        print(status_code)
+        
+        self.show_phase_game()
+    
+        self.show_phase_round()
+    
+        self.show_phase_turn()
+    
+        self.show_phase_challenge()
+    
+        self.show_phase_battle()
+        
+        
+        
     def apply_format_to_items(self,format_applier, items):
         formated_items = list()
         for item in items:
@@ -67,6 +228,9 @@ class DungeonViewer():
     
     
     def show_phase_game(self):
+        game_status = [StatusType.game_init, StatusType.game_start, StatusType.game_next_round, StatusType.game_end]
+        if self.dungeon.current_status_code not in game_status:
+            return
         print('Dungeon Game')
 
         self.dungeon.phase_game.start()
@@ -76,6 +240,9 @@ class DungeonViewer():
 
 
     def show_phase_round(self):
+        round_status = [StatusType.round_init, StatusType.round_start, StatusType.round_next_turn, StatusType.round_challenge, StatusType.round_end]
+        if self.dungeon.current_status_code not in round_status:
+            return
         print('Dungeon Round')
 
         player_in_round = self.dungeon.phase_round.player_in_round
@@ -96,6 +263,9 @@ class DungeonViewer():
         
         
     def show_phase_turn(self):
+        turn_status = [StatusType.turn_init, StatusType.turn_start, StatusType.turn_execute, StatusType.turn_end]
+        if self.dungeon.current_status_code not in turn_status:
+            return
         print('Dungeon Turn')
         fmt = '{} : {}'
         
@@ -128,6 +298,9 @@ class DungeonViewer():
         
         
     def show_phase_challenge(self):
+        challenge_status = [StatusType.challenge_init, StatusType.challenge_start, StatusType.challenge_next_battle, StatusType.challenge_end]
+        if self.dungeon.current_status_code not in challenge_status:
+            return
         print('Dungeon Challenge')
         fmt = '{} : {}'
 
@@ -149,6 +322,9 @@ class DungeonViewer():
         print()
         
     def show_phase_battle(self):
+        battle_status = [StatusType.battle_init, StatusType.battle_start, StatusType.battle_execute, StatusType.battle_end]
+        if self.dungeon.current_status_code not in battle_status:
+            return
         print('Dungeon Battle')
         fmt = '{} : {}'
 
@@ -170,30 +346,4 @@ class DungeonViewer():
         
         battle_win = self.dungeon.phase_battle.battle_win
         print(fmt.format('battle_win', battle_win))
-        
-        
-        
-        
-    def show(self):
-        self.show_phase_game()
-        
-        
-        self.dungeon.phase_round.start()
-        self.show_phase_round()
-        
-        
-        self.dungeon.phase_turn.start()
-        self.show_phase_turn()
-        
-        
-        self.dungeon.phase_challenge.start()
-        self.show_phase_challenge()
-        
-        
-        self.dungeon.phase_battle.start()
-        self.show_phase_battle()
-
-        
-        
-
-        
+                
