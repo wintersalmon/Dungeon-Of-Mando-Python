@@ -42,9 +42,8 @@ class PhaseTurn():
             return True
             
         elif self.turn_action == 2 and self.turn_remove_weapon != None: # Remove Monster And Weapon
-            self.action_monster_remove()
-            self.action_weapon_remove()
-            return True
+            return self.action_weapon_and_monster_remove()
+            
         else:
             return False
             
@@ -68,12 +67,16 @@ class PhaseTurn():
         # remove top monster_in_deck
         self.monster_in_deck.pop(-1)
     
-    def action_weapon_remove(self):
+    def action_weapon_and_monster_remove(self):
         # remove selected_weapon in weapon_in_dungeon
         try:
-            self.weapon_in_dungeon.remove(self.turn_remove_weapon)
+            if self.turn_remove_weapon in self.weapon_in_dungeon:
+                self.weapon_in_dungeon.remove(self.turn_remove_weapon)
+            else:
+                return False
         except:
             return False
+        self.action_monster_remove()
         return True
         # self.weapon_in_dungeon.pop(self.turn_remove_weapon)
     

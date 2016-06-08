@@ -121,7 +121,17 @@ def test():
     while is_running():
         update()
         show()
-        command()
+        if dungeon_controller.require_command_input_turn():
+            line = input('command : ')
+            if line == 'p':
+                action_turn_pass()
+            elif line == 'm':
+                action_turn_monster_to_dungeon()
+            elif line in '123456':
+                weaponNumber = int(line)
+                action_turn_weapon_remove(weaponNumber)
+            update()
+        #command()
        
 test()
 

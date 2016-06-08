@@ -44,22 +44,22 @@ class DungeonController():
         return event
     
     def action_turn_pass(self):
-        dungeon.phase_turn.action_turn_pass()
+        self.dungeon.phase_turn.turn_action = 0
         return True
         
     def action_turn_monster_to_dungeon(self):
-        dungeon.phase_turn.action_turn_monster_to_dungeon()
+        self.dungeon.phase_turn.turn_action = 1
         return True
         
-    def action_turn_weapon_remove(self, weaponsNumber):
+    def action_turn_weapon_remove(self, weaponNumber):
         try:
             weapon = self.dungeon.phase_game.weapon_list()[weaponNumber]
         except:
             weapon = None
         if weapon:
-            dungeon.phase_turn.turn_remove_weapon = weapon
-            if dungeon.phase_turn.action_turn_weapon_remove():
-                return True
+            self.dungeon.phase_turn.turn_remove_weapon = weapon
+            self.dungeon.phase_turn.turn_action = 2
+            return True
         return False
         
     

@@ -115,12 +115,11 @@ class DungeonViewer():
         
         
     def has_player_passed(self, playerNumber):
-        try:
-            player = self.dungeon.phase_game.player_list()[player_num]
-            if player in self.dungeon.phase_round.player_in_round:
-                return True
-        except:
+        player = self.dungeon.phase_game.player_list()[playerNumber]
+        if player in self.dungeon.phase_round.player_in_round:
             return False
+        else:
+            return True
         
     def is_players_turn(self, playerNumber):
         try:
@@ -159,6 +158,8 @@ class DungeonViewer():
             msg = '[{}({},{})]'.format(name, life, vp)
             if self.get_current_turn_player() == i:
                 msg = '*' + msg
+            if not self.has_player_passed(i):
+                msg += 'V'
             print(msg)
             
         deck_size = self.num_of_monster_in_deck()
