@@ -45,10 +45,12 @@ class DungeonController():
     
     def action_turn_pass(self):
         self.dungeon.phase_turn.turn_action = 0
+        self.update()
         return True
         
     def action_turn_monster_to_dungeon(self):
         self.dungeon.phase_turn.turn_action = 1
+        self.update()
         return True
         
     def action_turn_weapon_remove(self, weaponNumber):
@@ -59,6 +61,7 @@ class DungeonController():
         if weapon:
             self.dungeon.phase_turn.turn_remove_weapon = weapon
             self.dungeon.phase_turn.turn_action = 2
+            self.update()
             return True
         return False
         

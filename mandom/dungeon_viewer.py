@@ -141,20 +141,37 @@ class DungeonViewer():
             return False
     
     
-    def is_status_turn(self):
+    def is_status_turn_start(self):
         try:
-            code = self.dungeon.current_status_code
-            if code == StatusType.turn_init:
-                return True
-            if code == StatusType.turn_start:
-                return True
-            if code == StatusType.turn_end:
-                return True
-            if code == StatusType.turn_execute:
+            if self.dungeon.current_status_code == StatusType.turn_start:
                 return True
         except:
             return False
         return False
+
+    def is_status_battle_start(self):
+        try:
+            if self.dungeon.current_status_code == StatusType.battle_start:
+                return True
+        except:
+            return False
+        return False
+
+    def is_status_battle_end(self):
+        try:
+            if self.dungeon.current_status_code == StatusType.battle_end:
+                return True
+        except:
+            return False
+        return False
+
+    def get_battle_monster_damage(self):
+        try:
+            monster = self.dungeon.phase_round.monster_in_dungeon[-1]
+            damage = monster.damage()
+        except:
+            return -1
+        return damage
     
     def show(self):
         print('hi', self.num_of_player_in_game())

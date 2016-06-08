@@ -36,9 +36,9 @@ def is_running():
     return dungeon_controller.game_running()
 
 def update():
-    while dungeon_controller.last_status_execute_success:
-        dungeon_controller.update()
-    #dungeon_controller.update()
+    #while dungeon_controller.last_status_execute_success:
+    #    dungeon_controller.update()
+    dungeon_controller.update()
     #print(dungeon_controller.get_last_event())
     return True
 
@@ -111,6 +111,26 @@ def get_event_count():
 
 def get_event(i):
     return dungeon_controller.get_event(i)
+
+
+
+def has_weapon(num):
+    return dungeon_viewer.has_weapon(num)
+
+def is_status_turn_start():
+    return dungeon_viewer.is_status_turn_start()
+
+def is_status_battle_start():
+    return dungeon_viewer.is_status_battle_start()
+
+def is_status_battle_end():
+    return dungeon_viewer.is_status_battle_end()
+
+def get_battle_monster_damage():
+    return dungeon_viewer.get_battle_monster_damage()
+
+
+
         
 def show():
     dungeon_viewer.show()
