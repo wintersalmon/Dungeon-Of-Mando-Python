@@ -43,6 +43,40 @@ class DungeonController():
             return 'error_no_event'
         return event
     
+    def action_turn_pass(self):
+        dungeon.phase_turn.action_turn_pass()
+        return True
+        
+    def action_turn_monster_to_dungeon(self):
+        dungeon.phase_turn.action_turn_monster_to_dungeon()
+        return True
+        
+    def action_turn_weapon_remove(self, weaponsNumber):
+        try:
+            weapon = self.dungeon.phase_game.weapon_list()[weaponNumber]
+        except:
+            weapon = None
+        if weapon:
+            dungeon.phase_turn.turn_remove_weapon = weapon
+            if dungeon.phase_turn.action_turn_weapon_remove():
+                return True
+        return False
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     def update_command(self):
         if self.require_command_input_turn():
             self.command_input_turn()  

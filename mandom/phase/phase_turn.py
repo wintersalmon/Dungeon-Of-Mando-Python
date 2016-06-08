@@ -70,6 +70,10 @@ class PhaseTurn():
     
     def action_weapon_remove(self):
         # remove selected_weapon in weapon_in_dungeon
-        self.weapon_in_dungeon.remove(self.turn_remove_weapon)
+        try:
+            self.weapon_in_dungeon.remove(self.turn_remove_weapon)
+        except:
+            return False
+        return True
         # self.weapon_in_dungeon.pop(self.turn_remove_weapon)
     

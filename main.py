@@ -91,17 +91,16 @@ def is_players_turn(playerNumber):
     
     
 def action_turn_pass():
-    return dungeon_viewer.action_turn_pass()
+    return dungeon_controller.action_turn_pass()
     
 def action_turn_monster_to_dungeon():
-    return dungeon_viewer.action_turn_monster_to_dungeon()
+    return dungeon_controller.action_turn_monster_to_dungeon()
     
 def action_turn_weapon_remove(weaponNumber):
-    return dungeon_viewer.action_turn_weapon_remove(weaponNumber)
+    return dungeon_controller.action_turn_weapon_remove(weaponNumber)
     
 
-def get_last_event():
-    return dungeon_controller.get_last_event()
+
 
 
 
