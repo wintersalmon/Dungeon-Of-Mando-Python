@@ -16,6 +16,7 @@ class DungeonController():
         self.status_controller = DungeonStatusController(self.dungeon)
         self.current_status = None
         self.last_status_execute_success = False
+        self.event_recorder = list()
         
     def game_start(self):
         self.status_controller.begin()
@@ -27,10 +28,20 @@ class DungeonController():
     
     def update(self):
         if self.last_status_execute_success:
+            prev_status = self.current_status.data().name if self.current_status else 'no_type'
             self.current_status = self.status_controller.next()
+            changed_status = self.current_status.data().name if self.current_status else 'no_type'
             self.dungeon.change_status_code(self.current_status.data())
-            
+            event = 'status changed from {} to {}'.format(prev_status, changed_status)
+            self.event_recorder.append(event)
         self.last_status_execute_success = self.current_status.execute(self.dungeon)
+    
+    def get_last_event(self):
+        try:
+            event = self.event_recorder[-1]
+        except:
+            return 'error_no_event'
+        return event
     
     def update_command(self):
         if self.require_command_input_turn():

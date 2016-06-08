@@ -147,7 +147,7 @@ class DungeonViewer():
             self.dungeon.phase_turn.turn_action = 2
             self.dungeon.phase_turn.turn_remove_weapon = weapon
             return True
-    
+
     
     
     def show(self):

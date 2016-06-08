@@ -37,6 +37,7 @@ def update():
     #while dungeon_controller.last_status_execute_success:
     #    dungeon_controller.update()
     dungeon_controller.update()
+    print(dungeon_controller.get_last_event())
     return True
 
 def num_of_player_in_game():
@@ -99,7 +100,8 @@ def action_turn_weapon_remove(weaponNumber):
     return dungeon_viewer.action_turn_weapon_remove(weaponNumber)
     
 
-
+def get_last_event():
+    return dungeon_controller.get_last_event()
 
 
 
