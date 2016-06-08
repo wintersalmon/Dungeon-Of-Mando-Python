@@ -27,6 +27,8 @@ dungeon_controller = DungeonController(dungeon)
 
 def start():
     dungeon_controller.game_start()
+    dungeon.phase_game.start()
+    dungeon.phase_round.start()
     return True
 
 
@@ -37,7 +39,7 @@ def update():
     #while dungeon_controller.last_status_execute_success:
     #    dungeon_controller.update()
     dungeon_controller.update()
-    print(dungeon_controller.get_last_event())
+    #print(dungeon_controller.get_last_event())
     return True
 
 def num_of_player_in_game():
@@ -101,9 +103,14 @@ def action_turn_weapon_remove(weaponNumber):
     
 
 
+def get_last_event():
+    return dungeon_controller.get_last_event()
 
+def get_event_count():
+    return dungeon_controller.get_event_count()
 
-
+def get_event(i):
+    return dungeon_controller.get_event(i)
         
 def show():
     dungeon_viewer.show()
@@ -133,7 +140,7 @@ def test():
             update()
         #command()
        
-test()
+#test()
 
 
 
