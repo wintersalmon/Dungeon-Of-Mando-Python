@@ -38,6 +38,46 @@ def update():
         dungeon_controller.update()
     return True
 
+def num_of_player_in_game():
+    return dungeon_viewer.num_of_player_in_game()
+    
+def get_player_life_point(player_num):
+    return dungeon_viewer.get_player_life_point(player_num)
+    
+def get_player_victor_point(player_num):
+    return dungeon_viewer.get_player_victor_point(player_num)
+    
+def get_player_name(player_num):
+    return dungeon_viewer.get_player_name(player_num)
+    
+def get_current_turn_player_number():
+    return dungeon_viewer.get_current_turn_player()
+    
+def num_of_monster_in_deck():
+    return dungeon_viewer.num_of_monster_in_deck()
+    
+def num_of_monster_in_dungeon():
+    return dungeon_viewer.num_of_monster_in_dungeon()
+    
+def num_of_weapon_in_dungeon():
+    return dungeon_viewer.num_of_weapon_in_dungeon()
+    
+def top_monster_code_in_deck():
+    return int(dungeon_viewer.top_monster_in_deck())
+
+def top_monster_in_dungeon():
+    return int(dungeon_viewer.top_monster_in_dungeon())
+    
+def hero_remaining_armor():
+    return dungeon_viewer.hero_remaining_armor()
+
+
+
+
+
+
+
+
         
 def show():
     dungeon_viewer.show()
