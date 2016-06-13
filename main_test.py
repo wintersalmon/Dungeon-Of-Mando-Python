@@ -1,39 +1,31 @@
 # Salmonjoon
 # DungeonOfMandom
-# 2016.05.26
+# 2016.06.13
 #
-# test script for dungeon of mandom
+# Main Test 
 #
+
+from mandom.mandom import Mandom
+from mandom.mandom_controller import MandomController
+from mandom.mandom_viewer import MandomViewer
+def test_mandom_package_create():
+    mandom = Mandom()
+    controller = MandomController()
+    viewer = MandomViewer()
+    return True
+
+if __name__ == "__main__":
+    test_mandom_package_create()
+    print('all test passed')
+
+
+
+
+
 '''
 
-def test_containers():
-    pass
 
-def test_events():
-    pass
 
-def test_monsters():
-    pass
-
-def test_status():
-    pass
-
-def test_weapons():
-    pass
-
-def test_hero():
-    pass
-    
-def test_player():
-    pass
-    
-def test_status_manager():
-    pass
-
-def test_dungeon():
-    pass
-
-'''
 import sys
 
 class TestError(Exception):
@@ -110,7 +102,7 @@ def test_dungeon():
     while not manager.is_end():
         line = input('press something')
         manager.next()
-    '''
+
     print('### TEST GAME ###')
     game = dungeon.game
     
@@ -136,7 +128,7 @@ def test_dungeon():
     
     print('### TEST BATTLE ###')
     return True
-    '''
+
 
 
 def test_print_items_with_title(title,items):
@@ -156,8 +148,8 @@ def test_cases(title, test_function, test_case):
     print('Test {} end'.format(title))
 
 
-
 if __name__ == "__main__":
     test('Dungeon', test_dungeon)
     # test('Hero', test_hero)
     # test('StatusType', test_status_type)
+'''
