@@ -6,13 +6,14 @@
 #
 
 # from mandom.dungeon import Dungeon
-from mandom.dumy_dungeon import DumyDungeon
+from mandom.dumy_dungeon import DummyDungeon
 from mandom.status.status_game import StatusGame
+
 
 def print_all_node_preorder(node):
     if node == None:
         return False
-    
+
     print(node.data())
     idx = 0
     while print_all_node_preorder(node.get_child(idx)):
@@ -21,14 +22,15 @@ def print_all_node_preorder(node):
             raise IndexRangeError
     return True
 
+
 if __name__ == "__main__":
     print('START TEST')
-    
-    dungeon = DumyDungeon()
-    
+
+    dungeon = DummyDungeon()
+
     status = StatusGame(dungeon)
-    
+
     print_all_node_preorder(status)
-    
+
     print('END TEST')
-    
+ 

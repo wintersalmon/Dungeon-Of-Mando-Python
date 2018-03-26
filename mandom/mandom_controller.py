@@ -5,6 +5,7 @@
 # MandomController
 #
 
-class MandomController():
+
+class MandomController(object):
     def __init__(self):
         pass

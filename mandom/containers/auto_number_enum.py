@@ -7,6 +7,7 @@
 
 from enum import Enum
 
+
 class AutoNumberEnum(Enum):
     def __new__(cls):
         value = len(cls.__members__) + 1

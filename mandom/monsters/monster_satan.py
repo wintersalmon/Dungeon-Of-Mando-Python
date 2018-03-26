@@ -5,8 +5,9 @@
 # MonsterSatan
 #
 
-from mandom.monsters.monster      import Monster
+from mandom.monsters.monster import Monster
 from mandom.monsters.monster_type import MonsterType
+
 
 class MonsterSatan(Monster):
     def __init__(self):

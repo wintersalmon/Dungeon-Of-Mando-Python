@@ -5,7 +5,8 @@
 # Recorder
 #
 
-class Recorder:
+
+class Recorder(object):
     def __init__(self):
         self.events = []
 
@@ -17,7 +18,6 @@ class Recorder:
 
     def insert(self, item):
         self.events.append(item)
-    
+
     def remove(self, item):
         self.events.remove(item)
-    

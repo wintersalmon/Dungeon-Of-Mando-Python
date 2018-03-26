@@ -7,13 +7,14 @@
 
 from mandom.containers.auto_number_enum import AutoNumberEnum
 
+
 class MonsterType(AutoNumberEnum):
-    noname          = ()
-    goblin          = ()
+    noname = ()
+    goblin = ()
     skeletonWarrior = ()
-    ork             = ()
-    vampire         = ()
-    golam           = ()
-    reaper          = ()
-    satan           = ()
-    dragon          = ()
+    ork = ()
+    vampire = ()
+    golam = ()
+    reaper = ()
+    satan = ()
+    dragon = ()

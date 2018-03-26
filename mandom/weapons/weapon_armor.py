@@ -7,9 +7,10 @@
 
 from mandom.weapons.weapon import Weapon
 from mandom.weapons.weapon_type import WeaponType
-from mandom.monsters.monster_type import MonsterType
+
 
 class WeaponArmor(Weapon):
     slayer_monsters = []
+
     def __init__(self):
         super().__init__(WeaponType.armor, 'Armor', 5, WeaponArmor.slayer_monsters)

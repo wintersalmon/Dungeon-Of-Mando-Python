@@ -8,19 +8,18 @@
 from mandom.mandom import Mandom
 from mandom.mandom_controller import MandomController
 from mandom.mandom_viewer import MandomViewer
+
+
 def test_mandom_package_create():
     mandom = Mandom()
     controller = MandomController()
     viewer = MandomViewer()
     return True
 
+
 if __name__ == "__main__":
     test_mandom_package_create()
     print('all test passed')
-
-
-
-
 
 '''
 

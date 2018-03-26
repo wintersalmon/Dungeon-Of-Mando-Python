@@ -5,8 +5,9 @@
 # MonsterOrk
 #
 
-from mandom.monsters.monster      import Monster
+from mandom.monsters.monster import Monster
 from mandom.monsters.monster_type import MonsterType
+
 
 class MonsterOrk(Monster):
     def __init__(self):
